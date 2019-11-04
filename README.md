@@ -8,24 +8,23 @@ Cordova plugin for jitsi meet native sdk
 permision helper added ( for android ) 
 
 ## how to use
-
-let room_url = 'https://meet.jit.si/room_name';
-
 ```javascript
-plugins.JitsiPlugin.loadURL(room_url, null, function(data) {
-  if(data === "CONFERENCE_WILL_LEAVE"){
-    plugins.JitsiPlugin.destroy( function(data) {
-      // on Destroy
-      console.log("Destroy");
-    }, function (err) {
-      // on Error
-      console.log("Error");
+declare var jitsiplugin: any;
+
+jitsiplugin.loadURL('https://meet.jit.si/xxxxxx', null, (data) => {
+    if (data === 'CONFERENCE_WILL_LEAVE') {
+        jitsiplugin.destroy((dataDestroy) => {
+            // on Destroy
+            console.log('On Destroy : ', dataDestroy);
+        }, (err) => {
+            // on Error
+            console.log('On Error : ', err);
+        });
+    }
+    }, (err) => {
+        // on load url was not work
+        console.log('On load url was not work : ', err);
     });
-  }
-}, function(err) {
-  // on load url was not work
-  console.log("Error : ", err);
-});
 ```
 
 ---
@@ -39,5 +38,5 @@ ionic cordova plugin add cordova-plugin-compat
 
 ( for cordova permision helper )
 
-ionic cordova build andorid
+ionic cordova build android
 ```

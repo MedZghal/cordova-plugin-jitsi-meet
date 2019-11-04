@@ -28,20 +28,33 @@
 	</platform>
 
 	<!-- ios -->
-    <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="JitsiPlugin">
-                <param name="ios-package" value="JitsiPlugin"/>
-            </feature>
-        </config-file>
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="JitsiPlugin">
+				<param name="ios-package" value="JitsiPlugin"/>
+			</feature>
+		</config-file>
+
+		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+			<string>This application needs camera access.</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+			<string>This application needs microphone access.</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+			<string>This application needs read/write-access photo library access.</string>
+		</config-file>
+		<config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+			<string>need location access to find things nearby</string>
+		</config-file>
 
 		<header-file src="src/ios/JitsiMeetView.h" />
 		<header-file src="src/ios/JitsiMeetViewDelegate.h" />
-        <header-file src="src/ios/JitsiPlugin.h" />
-        <source-file src="src/ios/JitsiPlugin.mm" />
+		<header-file src="src/ios/JitsiPlugin.h" />
+		<source-file src="src/ios/JitsiPlugin.mm" />
 
-        <framework src="./framework/JitsiMeet.framework" custom="true" />
-        <framework src="./framework/WebRTC.framework" custom="true" />
+		<framework src="framework/WebRTC.framework" custom="true" embed="true" />
+		<framework src="framework/JitsiMeet.framework" custom="true" embed="true" />
 
-    </platform>
+	</platform>
 </plugin>
